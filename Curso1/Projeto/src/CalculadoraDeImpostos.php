@@ -2,7 +2,7 @@
 
 namespace Alura\DisignPattern;
 
-class CalculadoraDeImpoostos
+class CalculadoraDeImpostos
 {
     public function calcula(Orcamento $orcamento, string $nomeImposto): float
     {
