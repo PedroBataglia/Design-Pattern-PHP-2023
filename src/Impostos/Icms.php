@@ -1,10 +1,10 @@
 <?php
 
-namespace Alura\DisignPattern\Impostos;
+namespace Alura\DesignPattern\Impostos;
 
-use Alura\DisignPattern\Orcamento;
+use Alura\DesignPattern\Orcamento;
 
-class Icsm implements Imposto
+class Icms implements Imposto
 {
     public function calculaImposto(Orcamento $orcamento): float
     {
