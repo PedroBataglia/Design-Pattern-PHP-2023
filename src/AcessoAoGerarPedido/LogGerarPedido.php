@@ -2,9 +2,9 @@
 
 namespace Alura\DesignPattern\AcessoAoGerarPedido;
 
-class LogGerarPedido
+class LogGerarPedido implements AcaoAposGerarPedido
 {
-    public function executaAcao(Pedido $pedido)
+    public function executaAcao(Pedido $pedido): void
     {
         echo "Gerando log de geração de pedido";
     }
