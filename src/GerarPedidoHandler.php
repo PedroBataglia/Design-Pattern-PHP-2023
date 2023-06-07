@@ -17,7 +17,7 @@ class GerarPedidoHandler
     public function __construct()
      {}
 
-    public function adicionaAcaoAoGerarPedido(AcaoAposGerarPedido $acao)
+    public function adicionaAcaoAoGerarPedido(AcaoAposGerarPedido $acao): void
     {
         $this->acoesAposGerarPedido[] = $acao;
     }

@@ -2,6 +2,8 @@
 
 require "vendor/autoload.php";
 
+use Alura\DesignPattern\AcessoAoGerarPedido\CriaPedidoNoBanco;
+use Alura\DesignPattern\AcessoAoGerarPedido\LogGerarPedido;
 use Alura\DesignPattern\GerarPedido;
 use Alura\DesignPattern\GerarPedidoHandler;
 use Alura\DesignPattern\Orcamento;
@@ -13,5 +15,7 @@ $nomeCliente = $argv[3];
 
 $gerarPedido = new GerarPedido($valorOrcamento, $numeroDeItens, $nomeCliente);
 $gerarPedidoHandler = new GerarPedidoHandler();
+$gerarPedidoHandler->adicionaAcaoAoGerarPedido( new CriaPedidoNoBanco());
+$gerarPedidoHandler->adicionaAcaoAoGerarPedido( new LogGerarPedido());
 $gerarPedidoHandler->execute($gerarPedido);
-var_dump($gerarPedido);
+
