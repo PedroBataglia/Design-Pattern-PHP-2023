@@ -4,9 +4,9 @@ namespace Alura\DesignPattern\AcessoAoGerarPedido;
 
 use Alura\DesignPattern\Pedido;
 
-class LogGerarPedido implements AcaoAposGerarPedido
+class LogGerarPedido implements \SplObserver
 {
-    public function executaAcao(Pedido $pedido): void
+    public function update(\SplSubject $pedido): void
     {
         echo "Gerando log de geração de pedido";
     }
