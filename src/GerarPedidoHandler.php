@@ -2,6 +2,7 @@
 
 namespace Alura\DesignPattern;
 
+use Alura\DesignPattern\AcessoAoGerarPedido\AcaoAposGerarPedido;
 use Alura\DesignPattern\AcessoAoGerarPedido\CriaPedidoNoBanco;
 use Alura\DesignPattern\AcessoAoGerarPedido\EnviarPedidoPorEmail;
 use Alura\DesignPattern\AcessoAoGerarPedido\LogGerarPedido;
@@ -10,10 +11,16 @@ use Alura\DesignPattern\GerarPedido;
 
 class GerarPedidoHandler
 {
+    /** @var AcaoAposGerarPedido[] */
     private array $acoesAposGerarPedido = [];
 
     public function __construct()
      {}
+
+    public function adicionaAcaoAoGerarPedido(AcaoAposGerarPedido $acao)
+    {
+        $this->acoesAposGerarPedido[] = $acao;
+    }
 
     public function execute(GerarPedido $gerarPedido)
     {
@@ -26,12 +33,8 @@ class GerarPedidoHandler
         $pedido->orcamento = $orcamento;
         $pedido->nomeCliente = $gerarPedido->getNomeCliente();
 
-        $pedidoRepository = new CriaPedidoNoBanco();
-        $logGerarPedido = new LogGerarPedido();
-        $enviarPedidoPorEmail = new EnviarPedidoPorEmail();
-        $pedidoRepository->executaAcao($pedido);
-        $logGerarPedido->executaAcao($pedido);
-        $enviarPedidoPorEmail->executaAcao($pedido);
-
+        foreach($this->acoesAposGerarPedido as $acao) {
+            $acao->executaAcao($pedido);
+        }
     }
 }
