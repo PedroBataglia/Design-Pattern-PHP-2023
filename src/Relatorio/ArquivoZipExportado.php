@@ -13,7 +13,7 @@ class ArquivoZipExportado implements ArquivoExportado
 
     public function salvar(ConteudoExportado $conteudoExportado): string
     {
-        $caminhoArquivo = tmpfile();
+        $caminhoArquivo = tempnam(sys_get_temp_dir(), 'zip');
         $arquivoZip = new \ZipArchive();
         $arquivoZip->open($caminhoArquivo);
         $arquivoZip->addFromString($this->nomeArquivoInterno, serialize($conteudoExportado->conteudo()));
